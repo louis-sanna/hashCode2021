@@ -1,0 +1,11 @@
+{
+  "name": "hashCode2021",
+  "version": "1.0.0",
+  "description": "Code for Google's 2021 Hash Code Competition",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "ts-node": "^9.1.1",
+    "typescript": "^4.1.5"
+  }
+}
