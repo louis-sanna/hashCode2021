@@ -1,2 +1,2 @@
-export * from "./Input";
-export * from "./Pizza";
+export * from './Input';
+export * from './Pizza';
