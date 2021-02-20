@@ -1,3 +1,3 @@
 export interface Pizza {
-  ingredients: Array<string>;
+    ingredients: Array<string>;
 }
