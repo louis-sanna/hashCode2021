@@ -9,7 +9,7 @@ export function log(submission: Submission, folder: string): void {
 
 function buildSubmissionFile(submission: Submission) : string {
     let out = '';
-    out += submission.numberOfPizza;
+    out += submission.deliveries.length;
     out += '\n';
     for (const delivery of submission.deliveries) {
         out += delivery.sizeOfTeam;

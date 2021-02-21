@@ -1,8 +1,16 @@
 import { fileReader } from '../../utils';
 import { Input } from '../entities';
 
-export function parseInput(path: string): Input {
-    const lines = fileReader.readLines(path);
+const inputPathByProblem = {
+    'A': 'a_example.in',
+    'B': 'b_little_bit_of_everything.in',
+    'C': 'c_many_ingredients.in',
+    'D': 'd_many_pizzas.in',
+    'E': 'e_many_teams.in'
+};
+
+export function parseInput(problem: string): Input {
+    const lines = fileReader.readLines(`/pizza/inputs/${inputPathByProblem[problem]}`);
 
     const [, 
         numberOfTwoPersonTeams,
