@@ -1,7 +1,7 @@
 import { parseInput } from './parseInput';
 import { expect } from 'chai';
 
-describe('parseInput', () => {
+describe.skip('parseInput', () => {
     it('should return the parsed input', () => {
         const parsedInput = parseInput('A');
 
