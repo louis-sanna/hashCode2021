@@ -7,7 +7,7 @@ describe.skip('log', () => {
             deliveries: []
         };
 
-        log(submission, 'tests');
+        log(submission, 'tests', 0);
     });
 
     it('should write the submission in a file with the correct structure', () => {
@@ -19,6 +19,6 @@ describe.skip('log', () => {
             ]
         };
 
-        log(submission, 'tests');
+        log(submission, 'tests', 0);
     });
 });
