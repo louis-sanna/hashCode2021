@@ -3,7 +3,11 @@ import { Input, Submission } from '../../entities';
 
 export function solve(input: Input) : Submission {
     const pizzas = input.pizzas;
-    const pizzasLeftIndexes = _.shuffle(range(pizzas.length));
+    // const pizzasLeftIndexes = _.shuffle(range(pizzas.length));
+    const pizzasLeftIndexes = _.sortBy(
+        range(pizzas.length),
+        pizzaIndex => pizzas[pizzaIndex].ingredients.length
+    ).reverse();
     let {numberOfTwoPersonTeams, numberOfThreePersonTeams, numberOfFourPersonTeams} = input;
     const submission: Submission =  { deliveries: [] };
 
