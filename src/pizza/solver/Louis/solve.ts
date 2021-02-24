@@ -14,16 +14,14 @@ export function solve(input: Input) : Submission {
     const deliveries : Array<Delivery> = [];
     while (waiting4 > 0 && pizzaStack.length >= 4) {
         waiting4--;
-        deliveries.push({ 
-            sizeOfTeam: 4,
+        deliveries.push({
             pizzaIndexes: [pizzaStack.pop().index, pizzaStack.pop().index, pizzaStack.pop().index, pizzaStack.pop().index]
         });
     }
 
     while (waiting3 > 0 && pizzaStack.length >= 3) {
         waiting3--;
-        deliveries.push({ 
-            sizeOfTeam: 3,
+        deliveries.push({
             pizzaIndexes: [pizzaStack.pop().index, pizzaStack.pop().index, pizzaStack.pop().index]
         });
     }
@@ -31,14 +29,13 @@ export function solve(input: Input) : Submission {
 
     while (waiting2 > 0 && pizzaStack.length >= 2) {
         waiting2--;
-        deliveries.push({ 
-            sizeOfTeam: 2,
+        deliveries.push({
             pizzaIndexes: [pizzaStack.pop().index, pizzaStack.pop().index]
         });
     }
-        
+
     return {
         numberOfPizza: pizzas.length - pizzaStack.length,
         deliveries
-    }; 
+    };
 }

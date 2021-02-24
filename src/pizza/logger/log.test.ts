@@ -14,8 +14,8 @@ describe.skip('log', () => {
         const submission = {
             numberOfPizza: 2,
             deliveries: [
-                { sizeOfTeam: 2, pizzaIndexes: [1, 4]},
-                { sizeOfTeam: 3, pizzaIndexes: [0, 2, 3]}
+                { pizzaIndexes: [1, 4]},
+                { pizzaIndexes: [0, 2, 3]}
             ]
         };
 

@@ -11,7 +11,7 @@ function buildSubmissionFile(submission: Submission) : string {
     out += submission.deliveries.length;
     out += '\n';
     for (const delivery of submission.deliveries) {
-        out += delivery.sizeOfTeam;
+        out += delivery.pizzaIndexes.length;
         out += ' ';
         out += delivery.pizzaIndexes.join(' ');
         out += '\n';

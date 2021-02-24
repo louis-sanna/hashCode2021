@@ -37,7 +37,7 @@ describe('score', () => {
         };
         const submission = {
             numberOfPizza: 0,
-            deliveries: [{ sizeOfTeam: 2, pizzaIndexes: [0, 1] }]
+            deliveries: [{ pizzaIndexes: [0, 1] }]
         };
 
         const totalScore = score(submission, input);
@@ -60,8 +60,8 @@ describe('score', () => {
         const submission = {
             numberOfPizza: 0,
             deliveries: [
-                { sizeOfTeam: 2, pizzaIndexes: [0, 1] },
-                { sizeOfTeam: 2, pizzaIndexes: [2, 3] }
+                { pizzaIndexes: [0, 1] },
+                { pizzaIndexes: [2, 3] }
             ]
         };
 
@@ -85,8 +85,8 @@ describe('score', () => {
         const submission = {
             numberOfPizza: 0,
             deliveries: [
-                { sizeOfTeam: 2, pizzaIndexes: [0, 1] },
-                { sizeOfTeam: 2, pizzaIndexes: [2, 3] }
+                { pizzaIndexes: [0, 1] },
+                { pizzaIndexes: [2, 3] }
             ]
         };
 

@@ -72,7 +72,7 @@ describe('solve', () => {
 
         expect(bestSubmission).to.deep.equal({
             numberOfPizza: 4,
-            deliveries: [{ sizeOfTeam: 4, pizzaIndexes: [3, 2, 1, 0] }]
+            deliveries: [{ pizzaIndexes: [3, 2, 1, 0] }]
         });
     });
     it('should return deliver pizzas to a team if possible', () => {
@@ -91,7 +91,7 @@ describe('solve', () => {
 
         expect(bestSubmission).to.deep.equal({
             numberOfPizza: 3,
-            deliveries: [{ sizeOfTeam: 3, pizzaIndexes: [2, 1, 0] }]
+            deliveries: [{ pizzaIndexes: [2, 1, 0] }]
         });
     });
     it('should return deliver pizzas to a team if possible', () => {
@@ -109,7 +109,7 @@ describe('solve', () => {
 
         expect(bestSubmission).to.deep.equal({
             numberOfPizza: 2,
-            deliveries: [{ sizeOfTeam: 2, pizzaIndexes: [1, 0] }]
+            deliveries: [{ pizzaIndexes: [1, 0] }]
         });
     });
 });
