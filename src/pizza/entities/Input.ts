@@ -1,4 +1,4 @@
-import Pizza from './Pizza';
+import { Pizza } from './Pizza';
 
 export interface Input {
     numberOfTwoPersonTeams: number;

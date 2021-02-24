@@ -1,4 +1,4 @@
-import Delivery from './Pizza';
+import { Delivery } from './Delivery';
 
 export interface Submission {
     numberOfPizza: number;
