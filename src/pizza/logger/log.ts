@@ -1,4 +1,3 @@
-import { v4 as uuid } from 'uuid';
 import { fileWriter } from '../../utils';
 import { Submission } from '../entities';
 
