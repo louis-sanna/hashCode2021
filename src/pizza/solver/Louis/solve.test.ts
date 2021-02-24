@@ -13,7 +13,6 @@ describe('solve', () => {
         const bestSubmission = solve(input);
 
         expect(bestSubmission).to.deep.equal({
-            numberOfPizza: 0,
             deliveries: []
         });
     });
@@ -32,7 +31,6 @@ describe('solve', () => {
         const bestSubmission = solve(input);
 
         expect(bestSubmission).to.deep.equal({
-            numberOfPizza: 0,
             deliveries: []
         });
     });
@@ -51,7 +49,6 @@ describe('solve', () => {
         const bestSubmission = solve(input);
 
         expect(bestSubmission).to.deep.equal({
-            numberOfPizza: 0,
             deliveries: []
         });
     });
@@ -71,7 +68,6 @@ describe('solve', () => {
         const bestSubmission = solve(input);
 
         expect(bestSubmission).to.deep.equal({
-            numberOfPizza: 4,
             deliveries: [{ pizzaIndexes: [3, 2, 1, 0] }]
         });
     });
@@ -90,7 +86,6 @@ describe('solve', () => {
         const bestSubmission = solve(input);
 
         expect(bestSubmission).to.deep.equal({
-            numberOfPizza: 3,
             deliveries: [{ pizzaIndexes: [2, 1, 0] }]
         });
     });
@@ -108,7 +103,6 @@ describe('solve', () => {
         const bestSubmission = solve(input);
 
         expect(bestSubmission).to.deep.equal({
-            numberOfPizza: 2,
             deliveries: [{ pizzaIndexes: [1, 0] }]
         });
     });

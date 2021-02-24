@@ -35,7 +35,6 @@ export function solve(input: Input) : Submission {
     }
 
     return {
-        numberOfPizza: pizzas.length - pizzaStack.length,
         deliveries
     };
 }
