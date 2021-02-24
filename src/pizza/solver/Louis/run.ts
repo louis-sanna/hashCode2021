@@ -14,4 +14,4 @@ const totalScore : number = score(submission, parsedInput);
 
 console.log(`For problem ${problem}, we found a solution scored: ${totalScore}`);
 
-log(submission, problem);
+log(submission, problem, totalScore);

@@ -2,9 +2,9 @@ import { v4 as uuid } from 'uuid';
 import { fileWriter } from '../../utils';
 import { Submission } from '../entities';
 
-export function log(submission: Submission, folder: string): void {
+export function log(submission: Submission, folder: string, score: number): void {
     const submissionFile = buildSubmissionFile(submission);
-    writeFile(folder, submissionFile);
+    writeFile(folder, score, submissionFile);
 }
 
 function buildSubmissionFile(submission: Submission) : string {
@@ -20,6 +20,6 @@ function buildSubmissionFile(submission: Submission) : string {
     return out;
 }
 
-function writeFile(folder: string, data: string) : void{
-    fileWriter.writeFile(`../pizza/outputs/${folder}/${uuid()}.txt`, data);
+function writeFile(folder: string, score: number, data: string) : void{
+    fileWriter.writeFile(`../pizza/outputs/${folder}/${score}.txt`, data);
 }
