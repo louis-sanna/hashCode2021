@@ -9,8 +9,8 @@ const inputPathByProblem = {
     'E': 'e.txt'
 };
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function parseInput(problem: string): Input {
+    // basic parsing
     const lines = fileReader.readLines(`2021/inputs/${inputPathByProblem[problem]}`);
 
     const [d, i, s, v, f] = lines[0].split(' ').map(value => parseInt(value, 10));
@@ -36,6 +36,7 @@ export function parseInput(problem: string): Input {
         id++;
     }
 
+    // build intersectionsById
     const intersectionsById : {[id: number]: Intersection} = {};
     streets.forEach(street => {
         intersectionsById[street.begin] = intersectionsById[street.begin] ??
@@ -55,6 +56,13 @@ export function parseInput(problem: string): Input {
         intersectionsById[street.end].inputStreets.push(street.name);
     });
 
+    // build streetsByName
+    const streetsByName : {[name: string]: Street} = {};
+    streets.forEach(street => {
+        streetsByName[street.name] = street;
+    });
+
+    // return
     return {
         duration: d,
         intersectionsCount: i,
@@ -64,6 +72,6 @@ export function parseInput(problem: string): Input {
         streets: streets,
         cars: cars,
         intersectionsById: intersectionsById,
-        streetsByName: {}
+        streetsByName: streetsByName
     };
 }
