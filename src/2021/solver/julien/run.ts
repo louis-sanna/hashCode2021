@@ -6,20 +6,20 @@ import { solve } from './solve';
 
 console.log('Start solving HASH CODE 2021!');
 
-const problem = 'F';
+const problem = 'B';
 
 const parsedInput : Input = parseInput(problem);
-const bestScore  = 0;
+let bestScore  = 0;
 
 // eslint-disable-next-line no-constant-condition
-// while(true){
-const submission : Submission = solve(parsedInput);
-const totalScore : number = score(submission, parsedInput);
+while(true){
+    const submission : Submission = solve(parsedInput);
+    const totalScore : number = score(submission, parsedInput);
 
-// if(totalScore > bestScore){
-console.log(`For problem ${problem}, we found a solution scored: ${totalScore}`);
+    if(totalScore > bestScore){
+        console.log(`For problem ${problem}, we found a solution scored: ${totalScore}`);
 
-log(submission, problem, totalScore);
-// bestScore = totalScore;
-// }
-// }
+        log(submission, problem, totalScore);
+        bestScore = totalScore;
+    }
+}
