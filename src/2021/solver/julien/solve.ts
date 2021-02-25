@@ -10,10 +10,14 @@ export function solve(input: Input) : Submission {
         });
     });
 
+    for (const street in weightedStreets) {
+        weightedStreets[street] = Math.floor(weightedStreets[street] / 10) + 1;
+    }
+
     let intersectionSchedules : Array<IntersectionSchedule> = Object.entries(input.intersectionsById).map(
         ([id, intersection]) => ({
             intersection: parseInt(id, 10),
-            schedules: intersection.inputStreets.map(street => ({
+            schedules: _.shuffle(intersection.inputStreets).map(street => ({
                 street: street,
                 duration: weightedStreets[street] ?? 0
             }))
