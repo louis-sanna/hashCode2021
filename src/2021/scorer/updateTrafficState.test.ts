@@ -11,21 +11,35 @@ describe('score', () => {
         };
         const fullLightsSchedule = <FullLightsSchedule>{};
 
-        const udpatedTrafficState = updateTrafficState(trafficState, fullLightsSchedule);
+        const updatedTrafficState = updateTrafficState(trafficState, fullLightsSchedule);
 
-        expect(udpatedTrafficState).to.deep.equal({
+        expect(updatedTrafficState).to.deep.equal({
             time: 1,
             carPositions: []
         });
     });
+
+    it('should return advance car by 1 if possible', () => {
+        const trafficState = {
+            time: 0,
+            carPositions: [{
+                street: 'a',
+                car: 3,
+                distanceToEnd: 2
+            }]
+        };
+
+        const lightsSchedule = [];
+
+        const updatedTrafficState = updateTrafficState(trafficState, lightsSchedule);
+
+        expect(updatedTrafficState).to.deep.equal({
+            time: 1,
+            carPositions: [{
+                street: 'a',
+                car: 3,
+                distanceToEnd: 1
+            }]
+        });
+    });
 });
-
-
-// const trafficState = {
-//     time: 0,
-//     carPositions: [{
-//         street: 'a',
-//         car: number,
-//         distanceToEnd: 1
-//     }]
-// };
