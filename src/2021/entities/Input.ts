@@ -1,2 +1,20 @@
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface Input {}
+export interface Input {
+    duration: number,
+    intersectionsCount: number,
+    streetsCount: number,
+    carsCount: number,
+    bonus: number,
+    streets: Array<Street>,
+    cars: Array<Car>
+}
+
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface Street {
+
+}
+
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface Car {
+
+}
