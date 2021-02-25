@@ -2,22 +2,28 @@ import _ from 'underscore';
 import { Input, IntersectionSchedule, Submission } from '../../entities';
 
 export function solve(input: Input) : Submission {
-    // remove unused output
-    const usedStreets : Set<string> = new Set(_.flatten(input.cars.map(car => car.pathStreetNames)));
-    for (const id in input.intersectionsById) {
-        input.intersectionsById[id].inputStreets.filter(street => usedStreets.has(street));
-    }
+    const weightedStreets = {};
+    input.cars.forEach(car => {
+        car.pathStreetNames.forEach(street => {
+            weightedStreets[street] = weightedStreets[street] ?? 0;
+            weightedStreets[street]++;
+        });
+    });
 
-
-    const intersectionSchedules : Array<IntersectionSchedule> = Object.entries(input.intersectionsById).map(
+    let intersectionSchedules : Array<IntersectionSchedule> = Object.entries(input.intersectionsById).map(
         ([id, intersection]) => ({
             intersection: parseInt(id, 10),
             schedules: intersection.inputStreets.map(street => ({
                 street: street,
-                duration: 1
+                duration: weightedStreets[street] ?? 0
             }))
         })
     );
+
+    intersectionSchedules.forEach(intersectionSchedule => {
+        intersectionSchedule.schedules = intersectionSchedule.schedules.filter(schedule => schedule.duration !== 0);
+    });
+    intersectionSchedules = intersectionSchedules.filter(intersectionSchedule => intersectionSchedule.schedules.length !== 0);
 
     return {intersectionSchedules:intersectionSchedules};
 }
