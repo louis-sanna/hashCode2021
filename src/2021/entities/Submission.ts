@@ -1,5 +1,14 @@
-import { Schedule } from './Schedule';
-
 export interface Submission {
-    schedules: Array<Schedule>
+    intersectionSchedules: Array<IntersectionSchedule>
 }
+
+export interface IntersectionSchedule {
+    intersection: number,
+    schedules: Array<StreetSchedule>
+}
+
+export interface StreetSchedule {
+    street: string,
+    duration: number
+}
+
