@@ -1,6 +1,5 @@
 export interface CarPosition {
     street: string,
-    car: number,
     distanceToEnd: number
 }
 
