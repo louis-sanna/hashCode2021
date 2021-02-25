@@ -26,6 +26,7 @@ describe('score', () => {
                 length: 1
             }],
             cars: [{
+                id: 0,
                 pathLength: 1,
                 pathStreetNames: ['name of street']
             }],
@@ -33,11 +34,13 @@ describe('score', () => {
             intersectionsById: {
                 '0':
                 {
+                    id: 0,
                     inputStreets: [],
                     outputStreets: ['name of street']
                 },
                 '1':
                 {
+                    id: 1,
                     inputStreets: ['name of street'],
                     outputStreets: []
                 }
