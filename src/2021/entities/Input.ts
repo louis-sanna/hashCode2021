@@ -5,7 +5,10 @@ export interface Input {
     carsCount: number,
     bonus: number,
     streets: Array<Street>,
-    cars: Array<Car>
+    cars: Array<Car>,
+    // custom
+    intersectionsById: {[id: number]: Intersection},
+    streetsByName: {[name: string]: Street}
 }
 
 export interface Street {
@@ -18,4 +21,9 @@ export interface Street {
 export interface Car {
     pathLength: number,
     pathStreetNames: Array<string>
+}
+
+export interface Intersection {
+    inputStreets: Array<string>,
+    outputStreets: Array<string>
 }
