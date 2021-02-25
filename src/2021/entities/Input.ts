@@ -11,7 +11,10 @@ export interface Input {
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface Street {
-
+    begin: number,
+    end: number,
+    name: string,
+    length: number
 }
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
