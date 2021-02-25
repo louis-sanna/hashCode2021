@@ -19,5 +19,6 @@ export interface Street {
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface Car {
-
+    pathLength: number,
+    pathStreetNames: Array<string>
 }
