@@ -6,7 +6,8 @@ const inputPathByProblem = {
     'B': 'b.txt',
     'C': 'c.txt',
     'D': 'd.txt',
-    'E': 'e.txt'
+    'E': 'e.txt',
+    'F': 'f.txt'
 };
 
 export function parseInput(problem: string): Input {

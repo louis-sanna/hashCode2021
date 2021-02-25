@@ -6,7 +6,7 @@ import { solve } from './solve';
 
 console.log('Start solving HASH CODE 2021!');
 
-const problem = 'A';
+const problem = 'F';
 
 const parsedInput : Input = parseInput(problem);
 const bestScore  = 0;

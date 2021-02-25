@@ -1,31 +1,19 @@
 import _ from 'underscore';
-import { Input, Submission } from '../../entities';
+import { Input, IntersectionSchedule, Submission } from '../../entities';
 
 export function solve(input: Input) : Submission {
+    const intersectionSchedules : Array<IntersectionSchedule> = Object.entries(input.intersectionsById).map(
+        ([id, intersection]) => ({
+            intersection: parseInt(id, 10),
+            schedules: [{
+                duration: 1,
+                street: intersection.inputStreets[0]
+            }]
+        })
+    );
     // const x : Submission = {};
 
-    return {intersectionSchedules:[{
-        intersection: 1,
-        schedules: [{
-            street: 'rue-d-athenes',
-            duration: 2
-        }, {
-            street: 'rue-d-amsterdam',
-            duration: 1
-        }]
-    },{
-        intersection: 0,
-        schedules: [{
-            street: 'rue-de-londres',
-            duration: 2
-        }]
-    },{
-        intersection: 2,
-        schedules: [{
-            street: 'rue-de-moscou',
-            duration: 1
-        }]
-    }]};
+    return {intersectionSchedules:intersectionSchedules};
 }
 
 // Python's `range` method
