@@ -25,12 +25,15 @@ export function parseInput(problem: string): Input {
         });
     }
     const cars: Array<Car> = [];
+    let id = 0;
     for (const line of lines.slice(1+s, 1+s+v)) {
         const [p, ...names] = line.split(' ');
         cars.push({
+            id: id,
             pathLength: parseInt(p, 10),
             pathStreetNames: names
         });
+        id++;
     }
     return {
         duration: d,
