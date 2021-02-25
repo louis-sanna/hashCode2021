@@ -6,7 +6,8 @@ export interface CarPosition {
 
 export interface TrafficState {
     time: number,
-    carPositions: Array<CarPosition>
+    carPositions: Array<CarPosition>,
+    carsArrived: Array<number>
 }
 
 export interface FullLightsSchedule {
