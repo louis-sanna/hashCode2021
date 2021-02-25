@@ -1,6 +1,7 @@
 import { FullLightsSchedule, Submission, IntersectionSchedule, StreetSchedule, Input } from '../entities';
 
 export function computeFullLightsSchedule(input: Input, submission: Submission) : FullLightsSchedule {
+    console.log(submission);
     const fullLightsSchedule = <FullLightsSchedule>{
         greenStreetByTimeAndIntersection: new Array(input.duration)
     };
@@ -15,7 +16,7 @@ export function computeFullLightsSchedule(input: Input, submission: Submission) 
             }
         });
         for (let i = 0; i < input.duration; ++i) {
-            fullLightsSchedule[i][intersectionSchedule.intersection] = streetCycle[i % streetCycle.length];
+            fullLightsSchedule.greenStreetByTimeAndIntersection[i][intersectionSchedule.intersection] = streetCycle[i % streetCycle.length];
         }
     });
     return fullLightsSchedule;

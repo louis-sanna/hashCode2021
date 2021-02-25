@@ -1,15 +1,18 @@
 import { Input, Submission, TrafficState } from '../entities';
-import computeFullLightsSchedule from './computeFullLightsSchedule';
-import updateTrafficState from './updateTrafficState';
+import {computeFullLightsSchedule} from './computeFullLightsSchedule';
+import {updateTrafficState} from './updateTrafficState';
 
 export function score(submission: Submission, input: Input): number {
     const fullLightsSchedule = computeFullLightsSchedule(input, submission);
     let totalScore = 0;
     const finalTime = input.duration;
-    const trafficState = generateTrafficState();
+    const trafficState = generateTrafficState(input);
+    console.log(JSON.stringify(input, null, 2));
     while (trafficState.time < finalTime) {
         updateTrafficState(trafficState, fullLightsSchedule, input);
+        console.log('trafficState', trafficState);
         const currentTime = trafficState.time;
+        console.log(trafficState.time, finalTime);
         trafficState.carsArrived.forEach(() => {
             totalScore += input.bonus;
             totalScore += finalTime - trafficState.time;
