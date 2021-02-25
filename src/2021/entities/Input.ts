@@ -24,6 +24,7 @@ export interface Car {
 }
 
 export interface Intersection {
+    id: number
     inputStreets: Array<string>,
     outputStreets: Array<string>
 }
