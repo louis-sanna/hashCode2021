@@ -5,5 +5,6 @@ export interface CarPosition {
 }
 
 export interface TrafficState {
+    time: number,
     carPositions: Array<CarPosition>
 }
