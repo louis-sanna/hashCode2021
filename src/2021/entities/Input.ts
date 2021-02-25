@@ -19,6 +19,7 @@ export interface Street {
 }
 
 export interface Car {
+    id: number,
     pathLength: number,
     pathStreetNames: Array<string>
 }
