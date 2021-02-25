@@ -11,7 +11,6 @@ export function solve(input: Input) : Submission {
             }]
         })
     );
-    // const x : Submission = {};
 
     return {intersectionSchedules:intersectionSchedules};
 }
