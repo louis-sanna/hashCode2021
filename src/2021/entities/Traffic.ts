@@ -10,9 +10,5 @@ export interface TrafficState {
 }
 
 export interface FullLightsSchedule {
-    stateByTime: Array<LightsState>; //the index in this array is the time
-}
-
-export interface LightsState {
-    lightsByIntersection: Array<string>; //the index in this array is the intersection index, and the string is the street currently green
+    greenStreetByTimeAndIntersection: Array<Array<string>>; //the first index is the time, the second index is the intersection, the value (string) is the currently green street
 }
