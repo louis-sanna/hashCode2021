@@ -1,5 +1,5 @@
 import { fileReader } from '../../utils';
-import { Car, Input, Street } from '../entities';
+import { Car, Input, Intersection, Street } from '../entities';
 
 const inputPathByProblem = {
     'A': 'a.txt',
@@ -35,6 +35,26 @@ export function parseInput(problem: string): Input {
         });
         id++;
     }
+
+    const intersectionsById : {[id: number]: Intersection} = {};
+    streets.forEach(street => {
+        intersectionsById[street.begin] = intersectionsById[street.begin] ??
+            {
+                id: street.begin,
+                inputStreets: [],
+                outputStreets: []
+            };
+        intersectionsById[street.end] = intersectionsById[street.end] ??
+            {
+                id: street.end,
+                inputStreets: [],
+                outputStreets: []
+            };
+
+        intersectionsById[street.begin].outputStreets.push(street.name);
+        intersectionsById[street.end].inputStreets.push(street.name);
+    });
+
     return {
         duration: d,
         intersectionsCount: i,
@@ -43,7 +63,7 @@ export function parseInput(problem: string): Input {
         bonus: f,
         streets: streets,
         cars: cars,
-        intersectionsById: {},
+        intersectionsById: intersectionsById,
         streetsByName: {}
     };
 }
