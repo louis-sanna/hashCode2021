@@ -57,7 +57,7 @@ function updateCarAtIntersection(car, time, isGreenByTimeByStreet, input) {
             return;
         }
         if (isGreenByTimeByStreet[time][car.pathStreetNames[0]]) {
-            car.pathStreetNames.shift();
+            car.pathStreetNames = car.pathStreetNames.slice(1, car.pathStreetNames.length);
             car.timeRemainingOnStreet = getStreetLength(car.pathStreetNames[0], input);
         }
     }
