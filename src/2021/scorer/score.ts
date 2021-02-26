@@ -16,8 +16,13 @@ export function score(submission: Submission, input: InputAdapter): number {
     const cars = buildCars(input);
     console.log('isGreenByTimeByStreet', isGreenByTimeByStreet);
     console.log('cars', cars);
-    const time = 0;
-    cars.forEach(car => updateCarAtIntersection(car, time));
+    let time = 0;
+    cars.forEach(car => updateCarAtIntersection(car, time, isGreenByTimeByStreet, input));
+    while (time <= input.duration) {
+        cars.forEach(car => moveCarsAlongStreets(car));
+        time++;
+        cars.forEach(car => updateCarAtIntersection(car, time, isGreenByTimeByStreet, input));
+    }
     console.log('cars', cars);
     return scoreCars(cars, input);
 }
@@ -33,7 +38,16 @@ function scoreCars(cars, input) {
     return totalScore;
 }
 
-function updateCarAtIntersection(car, time) {
+function moveCarsAlongStreets(car) {
+    if (typeof car.arrived !== 'undefined') {
+        return;
+    }
+    if (car.timeRemainingOnStreet > 0) {
+        car.timeRemainingOnStreet--;
+    }
+}
+
+function updateCarAtIntersection(car, time, isGreenByTimeByStreet, input) {
     if (typeof car.arrived !== 'undefined') {
         return;
     }
@@ -42,7 +56,16 @@ function updateCarAtIntersection(car, time) {
             car.arrived = time;
             return;
         }
+        if (isGreenByTimeByStreet[time][car.pathStreetNames[0]]) {
+            car.pathStreetNames.shift();
+            car.timeRemainingOnStreet = getStreetLength(car.pathStreetNames[0], input);
+        }
     }
+}
+
+function getStreetLength(streetName, input) {
+    const currentStreet = input.streets.find(street => street.name === streetName);
+    return currentStreet.length;
 }
 
 function buildCars(input) {
