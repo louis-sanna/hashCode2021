@@ -15,12 +15,20 @@ export function score(submission: Submission, input: InputAdapter): number {
     const isGreenByTimeByStreet = buildIsGreenByTimeByStreet(submission, input);
     const cars = buildCars(input);
     let time = 0;
+    // console.log('isGreenByTimeByStreet', isGreenByTimeByStreet);
+    // console.log('cars', cars);
+    // console.log('streets', input.streets);
     cars.forEach(car => updateCarAtIntersection(car, time, isGreenByTimeByStreet, input));
-    while (time <= input.duration) {
+    while (time < input.duration) {
+        // console.log('time', time);
+        // console.log('cars', cars);
         time++;
+        cars.forEach(car => updateCarAtIntersection(car, time, isGreenByTimeByStreet, input));
         cars.forEach(car => moveCarsAlongStreets(car));
         cars.forEach(car => updateCarAtIntersection(car, time, isGreenByTimeByStreet, input));
     }
+    // console.log('time', time);
+    // console.log('cars', cars);
     // console.log('bonus', input.bonus);
     // console.log('duration', input.duration);
     // console.log('cars', cars);
@@ -51,15 +59,14 @@ function updateCarAtIntersection(car, time, isGreenByTimeByStreet, input) {
     if (typeof car.arrived !== 'undefined') {
         return;
     }
-    if (car.timeRemainingOnStreet === 0) {
-        if (car.pathStreetNames.length === 1) {
-            car.arrived = time;
-            return;
-        }
-        if (isGreenByTimeByStreet[time][car.pathStreetNames[0]]) {
-            car.pathStreetNames = car.pathStreetNames.slice(1, car.pathStreetNames.length);
-            car.timeRemainingOnStreet = getStreetLength(car.pathStreetNames[0], input);
-        }
+    if (car.timeRemainingOnStreet !== 0) { return; }
+    if (car.pathStreetNames.length === 1) {
+        car.arrived = time;
+        return;
+    }
+    if (isGreenByTimeByStreet[time][car.pathStreetNames[0]]) {
+        car.pathStreetNames = car.pathStreetNames.slice(1, car.pathStreetNames.length);
+        car.timeRemainingOnStreet = getStreetLength(car.pathStreetNames[0], input);
     }
 }
 
@@ -89,11 +96,11 @@ function buildIsGreenByTimeByStreet(submission, input) {
             for (let i = 0; i <= streetSchedule.duration; i++) {
                 streetCycle.push(streetSchedule.street);
             }
-            for (let virtualTime = 0; virtualTime <= input.duration + 1; virtualTime++) {
-                const currentGreenStreet = streetCycle[virtualTime % streetCycle.length];
-                isGreenByTimeByStreet[virtualTime][currentGreenStreet] = true;
-            }
         });
+        for (let virtualTime = 0; virtualTime <= input.duration + 1; virtualTime++) {
+            const currentGreenStreet = streetCycle[virtualTime % streetCycle.length];
+            isGreenByTimeByStreet[virtualTime][currentGreenStreet] = true;
+        }
     }
     return isGreenByTimeByStreet;
 }
