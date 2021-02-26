@@ -17,9 +17,8 @@ export function score(submission: Submission, input: InputAdapter): number {
     let time = 0;
     cars.forEach(car => updateCarAtIntersection(car, time, isGreenByTimeByStreet, input));
     while (time <= input.duration) {
-        cars.forEach(car => updateCarAtIntersection(car, time, isGreenByTimeByStreet, input));
-        cars.forEach(car => moveCarsAlongStreets(car));
         time++;
+        cars.forEach(car => moveCarsAlongStreets(car));
         cars.forEach(car => updateCarAtIntersection(car, time, isGreenByTimeByStreet, input));
     }
     // console.log('bonus', input.bonus);
@@ -78,7 +77,7 @@ function buildCars(input) {
 
 function buildIsGreenByTimeByStreet(submission, input) {
     const isGreenByTimeByStreet = [];
-    for (let virtualTime = 0; virtualTime <= input.duration; virtualTime++) {
+    for (let virtualTime = 0; virtualTime <= input.duration + 1; virtualTime++) {
         isGreenByTimeByStreet[virtualTime] = [];
         for (const street of input.streets) {
             isGreenByTimeByStreet[virtualTime][street.name] = false;
@@ -90,7 +89,7 @@ function buildIsGreenByTimeByStreet(submission, input) {
             for (let i = 0; i <= streetSchedule.duration; i++) {
                 streetCycle.push(streetSchedule.street);
             }
-            for (let virtualTime = 0; virtualTime <= input.duration; virtualTime++) {
+            for (let virtualTime = 0; virtualTime <= input.duration + 1; virtualTime++) {
                 const currentGreenStreet = streetCycle[virtualTime % streetCycle.length];
                 isGreenByTimeByStreet[virtualTime][currentGreenStreet] = true;
             }

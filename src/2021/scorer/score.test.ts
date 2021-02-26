@@ -183,4 +183,27 @@ describe('score', () => {
 
         expect(totalScore).to.equal(2002);
     });
+
+    it('should score like google', () => {
+        const input = parseInput('A');
+        const submission = {
+            intersectionSchedules: [{
+                intersection: 0,
+                schedules: [{
+                    street: 'rue-de-londres',
+                    duration: 1
+                }]
+            }, {
+                intersection: 3,
+                schedules: [{
+                    street: 'rue-de-rome',
+                    duration: 1
+                }]
+            }]
+        };
+
+        const totalScore = score(submission, input);
+
+        expect(totalScore).to.equal(0);
+    });
 });
