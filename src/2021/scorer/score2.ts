@@ -61,7 +61,6 @@ export function score2(submission: Submission, input: Input): number {
 
                 if(street === greenStreet
                     && intersectionStates[intersection][street].filter(car => car.timeLeft === 0).length > 0){
-                    // eslint-disable-next-line @typescript-eslint/no-unused-vars
                     const movingCar = intersectionStates[intersection][street].filter(car => car.timeLeft === 0)[0];
                     newIntersectionStates[intersection] = newIntersectionStates[intersection] ?? {};
                     newIntersectionStates[intersection][street] = _.reject(intersectionStates[intersection][street], car => car.id === movingCar.id);
