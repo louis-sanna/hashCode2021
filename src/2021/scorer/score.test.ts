@@ -110,6 +110,40 @@ describe('score', () => {
         expect(totalScore).to.equal(1000);
     });
 
+    it('should return bonus if light is already green with points for duration', () => {
+        const input = {
+            duration: 2,
+            bonus: 1000,
+            streets: [{
+                begin: 0,
+                end: 1,
+                name: 'name of street',
+                length: 1
+            }, {
+                begin: 1,
+                end: 2,
+                name: 'name of street 2',
+                length: 1
+            }],
+            cars: [{
+                pathStreetNames: ['name of street', 'name of street 2']
+            }]
+        };
+        const submission = {
+            intersectionSchedules: [{
+                intersection: 1,
+                schedules: [{
+                    street: 'name of street',
+                    duration: 10
+                }]
+            }]
+        };
+
+        const totalScore = score(submission, input);
+
+        expect(totalScore).to.equal(1001);
+    });
+
     it.skip('should return 0 input there are no cars', () => {
         const input = {
             duration: 0,
