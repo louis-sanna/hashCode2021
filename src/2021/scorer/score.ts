@@ -15,20 +15,20 @@ export function score(submission: Submission, input: InputAdapter): number {
     const isGreenByTimeByStreet = buildIsGreenByTimeByStreet(submission, input);
     const cars = buildCars(input);
     let time = 0;
-    // console.log('isGreenByTimeByStreet', isGreenByTimeByStreet);
-    // console.log('cars', cars);
-    // console.log('streets', input.streets);
+    console.log('isGreenByTimeByStreet', isGreenByTimeByStreet);
+    console.log('cars', cars);
+    console.log('streets', input.streets);
     cars.forEach(car => updateCarAtIntersection(car, time, isGreenByTimeByStreet, input));
     while (time < input.duration) {
-        // console.log('time', time);
-        // console.log('cars', cars);
+        console.log('time', time);
+        console.log('cars', cars);
         time++;
         cars.forEach(car => updateCarAtIntersection(car, time, isGreenByTimeByStreet, input));
         cars.forEach(car => moveCarsAlongStreets(car));
         cars.forEach(car => updateCarAtIntersection(car, time, isGreenByTimeByStreet, input));
     }
-    // console.log('time', time);
-    // console.log('cars', cars);
+    console.log('time', time);
+    console.log('cars', cars);
     // console.log('bonus', input.bonus);
     // console.log('duration', input.duration);
     // console.log('cars', cars);
@@ -64,7 +64,7 @@ function updateCarAtIntersection(car, time, isGreenByTimeByStreet, input) {
         car.arrived = time;
         return;
     }
-    if (isGreenByTimeByStreet[time][car.pathStreetNames[0]]) {
+    if (isGreenByTimeByStreet[time][car.pathStreetNames[0]] || isGreenByTimeByStreet[time + 1][car.pathStreetNames[0]]) {
         car.pathStreetNames = car.pathStreetNames.slice(1, car.pathStreetNames.length);
         car.timeRemainingOnStreet = getStreetLength(car.pathStreetNames[0], input);
     }
