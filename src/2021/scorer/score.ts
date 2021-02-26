@@ -14,16 +14,17 @@ interface carAdapter {
 export function score(submission: Submission, input: InputAdapter): number {
     const isGreenByTimeByStreet = buildIsGreenByTimeByStreet(submission, input);
     const cars = buildCars(input);
-    console.log('isGreenByTimeByStreet', isGreenByTimeByStreet);
-    console.log('cars', cars);
     let time = 0;
     cars.forEach(car => updateCarAtIntersection(car, time, isGreenByTimeByStreet, input));
     while (time <= input.duration) {
+        cars.forEach(car => updateCarAtIntersection(car, time, isGreenByTimeByStreet, input));
         cars.forEach(car => moveCarsAlongStreets(car));
         time++;
         cars.forEach(car => updateCarAtIntersection(car, time, isGreenByTimeByStreet, input));
     }
-    console.log('cars', cars);
+    // console.log('bonus', input.bonus);
+    // console.log('duration', input.duration);
+    // console.log('cars', cars);
     return scoreCars(cars, input);
 }
 
@@ -32,7 +33,7 @@ function scoreCars(cars, input) {
     for (const car of cars) {
         if (typeof car.arrived !== 'undefined') {
             totalScore += input.bonus;
-            totalScore += input.duration - car.arrived;
+            totalScore += Math.max(input.duration - car.arrived, 0);
         }
     }
     return totalScore;

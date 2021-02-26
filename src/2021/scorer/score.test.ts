@@ -1,5 +1,7 @@
 import { score } from './score';
 import { expect } from 'chai';
+import { parseInput } from './../parser';
+
 
 describe('score', () => {
 
@@ -144,34 +146,41 @@ describe('score', () => {
         expect(totalScore).to.equal(1001);
     });
 
-    it.skip('should return 0 input there are no cars', () => {
-        const input = {
-            duration: 0,
-            bonus: 0,
-            streets: [{
-                begin: 0,
-                end: 1,
-                name: 'name of street',
-                length: 1
-            }],
-            cars: [{
-                id: 0,
-                pathLength: 1,
-                pathStreetNames: ['name of street']
-            }]
-        };
+    it('should sore like google', () => {
+        const input = parseInput('A');
         const submission = {
             intersectionSchedules: [{
+                intersection: 0,
+                schedules: [{
+                    street: 'rue-de-londres',
+                    duration: 1
+                }]
+            }, {
                 intersection: 1,
                 schedules: [{
-                    street: 'name of street',
-                    duration: 0
+                    street: 'rue-d-athenes',
+                    duration: 1
+                }, {
+                    street: 'rue-d-amsterdam',
+                    duration: 1
+                }]
+            }, {
+                intersection: 2,
+                schedules: [{
+                    street: 'rue-de-moscou',
+                    duration: 1
+                }]
+            }, {
+                intersection: 3,
+                schedules: [{
+                    street: 'rue-de-rome',
+                    duration: 1
                 }]
             }]
         };
 
         const totalScore = score(submission, input);
 
-        expect(totalScore).to.equal(0);
+        expect(totalScore).to.equal(2002);
     });
 });
