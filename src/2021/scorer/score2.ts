@@ -50,20 +50,27 @@ export function score2(submission: Submission, input: Input): number {
             const greenStreet = intersectionSchedule
                 .schedules
                 .reduce(
-                    (prev, curr) => ({ time: prev.time + curr.duration, street: prev.street ?? (time % totalScheduleDuration <= prev.time ? curr.street : null) }),
+                    (prev, curr) => ({ time: prev.time + curr.duration, street: prev.street ?? (time % totalScheduleDuration < prev.time + curr.duration ? curr.street : null) }),
                     { time: 0, street: null }
                 )
                 .street;
 
-            // duplicate pending
+            // calculate behavior for each incoming street of the intersection
             for (const street in intersectionStates[intersection]) {
                 if(intersectionStates[intersection][street].length === 0){continue;}
 
                 if(street === greenStreet
                     && intersectionStates[intersection][street].filter(car => car.timeLeft === 0).length > 0){
                     const movingCar = intersectionStates[intersection][street].filter(car => car.timeLeft === 0)[0];
-                    newIntersectionStates[intersection] = newIntersectionStates[intersection] ?? {};
-                    newIntersectionStates[intersection][street] = _.reject(intersectionStates[intersection][street], car => car.id === movingCar.id);
+                    const carsLeftPending =  _.reject(intersectionStates[intersection][street], car => car.id === movingCar.id);
+
+                    // update waiting list
+                    if(carsLeftPending.length > 0){
+                        newIntersectionStates[intersection] = newIntersectionStates[intersection] ?? {};
+                        newIntersectionStates[intersection][street] = carsLeftPending;
+                    }
+
+                    // move car
                     const nextStreet = input.streetsByName[movingCar.pathStreetNames.shift()];
                     newIntersectionStates[nextStreet.end] = newIntersectionStates[nextStreet.end] ?? {};
                     newIntersectionStates[nextStreet.end][nextStreet.name] = newIntersectionStates[nextStreet.end][nextStreet.name] ?? [];
@@ -71,7 +78,8 @@ export function score2(submission: Submission, input: Input): number {
                     continue;
                 }
                 newIntersectionStates[intersection] = newIntersectionStates[intersection] ?? {};
-                newIntersectionStates[intersection][street] = intersectionStates[intersection][street];
+                newIntersectionStates[intersection][street] = newIntersectionStates[intersection][street] ?? [];
+                newIntersectionStates[intersection][street].push(...intersectionStates[intersection][street]);
             }
         }
 
