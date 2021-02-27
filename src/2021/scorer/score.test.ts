@@ -1,6 +1,239 @@
-import { score } from './score';
+import { score, simulateTraffic } from './score';
 import { expect } from 'chai';
 import { parseInput } from './../parser';
+
+
+describe('google example - first Car', () => {
+    it('should first car at T zero crosses immediately intersection 0, as the traffic light there is always green', () => {
+        const input = parseInput('A');
+        input.cars = [input.cars[0]];
+        input.duration = 0;
+        const submission = {
+            intersectionSchedules: [{
+                intersection: 0,
+                schedules: [{
+                    street: 'rue-de-londres',
+                    duration: 2
+                }]
+            }, {
+                intersection: 1,
+                schedules: [{
+                    street: 'rue-d-athenes',
+                    duration: 2
+                }, {
+                    street: 'rue-d-amsterdam',
+                    duration: 1
+                }]
+            }, {
+                intersection: 2,
+                schedules: [{
+                    street: 'rue-de-moscou',
+                    duration: 1
+                }]
+            }]
+        };
+
+        const cars = simulateTraffic(submission, input);
+
+        expect(cars).to.deep.equal([
+            {
+                pathStreetNames: [ 'rue-d-amsterdam', 'rue-de-moscou', 'rue-de-rome' ],
+                timeRemainingOnStreet: 1
+            }
+        ]);
+    });
+    it('one second later, it has gone through rue-d-amsterdam. However, the traffic light is red', () => {
+        const input = parseInput('A');
+        input.cars = [input.cars[0]];
+        input.duration = 1;
+        const submission = {
+            intersectionSchedules: [{
+                intersection: 0,
+                schedules: [{
+                    street: 'rue-de-londres',
+                    duration: 2
+                }]
+            }, {
+                intersection: 1,
+                schedules: [{
+                    street: 'rue-d-athenes',
+                    duration: 2
+                }, {
+                    street: 'rue-d-amsterdam',
+                    duration: 1
+                }]
+            }, {
+                intersection: 2,
+                schedules: [{
+                    street: 'rue-de-moscou',
+                    duration: 1
+                }]
+            }]
+        };
+
+        const cars = simulateTraffic(submission, input);
+
+        expect(cars).to.deep.equal([
+            {
+                pathStreetNames: [ 'rue-d-amsterdam', 'rue-de-moscou', 'rue-de-rome' ],
+                timeRemainingOnStreet: 0
+            }
+        ]);
+    });
+    it('the car now crosses the intersection and continues to rue-de-moscou', () => {
+        const input = parseInput('A');
+        input.cars = [input.cars[0]];
+        input.duration = 2;
+        const submission = {
+            intersectionSchedules: [{
+                intersection: 0,
+                schedules: [{
+                    street: 'rue-de-londres',
+                    duration: 2
+                }]
+            }, {
+                intersection: 1,
+                schedules: [{
+                    street: 'rue-d-athenes',
+                    duration: 2
+                }, {
+                    street: 'rue-d-amsterdam',
+                    duration: 1
+                }]
+            }, {
+                intersection: 2,
+                schedules: [{
+                    street: 'rue-de-moscou',
+                    duration: 1
+                }]
+            }]
+        };
+
+        const cars = simulateTraffic(submission, input);
+
+        expect(cars).to.deep.equal([
+            {
+                pathStreetNames: ['rue-de-moscou', 'rue-de-rome' ],
+                timeRemainingOnStreet: 3
+            }
+        ]);
+    });
+    it('the car now crosses the intersection and continues to rue-de-moscou', () => {
+        const input = parseInput('A');
+        input.cars = [input.cars[0]];
+        input.duration = 2;
+        const submission = {
+            intersectionSchedules: [{
+                intersection: 0,
+                schedules: [{
+                    street: 'rue-de-londres',
+                    duration: 2
+                }]
+            }, {
+                intersection: 1,
+                schedules: [{
+                    street: 'rue-d-athenes',
+                    duration: 2
+                }, {
+                    street: 'rue-d-amsterdam',
+                    duration: 1
+                }]
+            }, {
+                intersection: 2,
+                schedules: [{
+                    street: 'rue-de-moscou',
+                    duration: 1
+                }]
+            }]
+        };
+
+        const cars = simulateTraffic(submission, input);
+
+        expect(cars).to.deep.equal([
+            {
+                pathStreetNames: ['rue-de-moscou', 'rue-de-rome' ],
+                timeRemainingOnStreet: 3
+            }
+        ]);
+    });
+    it('the car now crosses the intersection and continues to rue-de-moscou', () => {
+        const input = parseInput('A');
+        input.cars = [input.cars[0]];
+        input.duration = 5;
+        const submission = {
+            intersectionSchedules: [{
+                intersection: 0,
+                schedules: [{
+                    street: 'rue-de-londres',
+                    duration: 2
+                }]
+            }, {
+                intersection: 1,
+                schedules: [{
+                    street: 'rue-d-athenes',
+                    duration: 2
+                }, {
+                    street: 'rue-d-amsterdam',
+                    duration: 1
+                }]
+            }, {
+                intersection: 2,
+                schedules: [{
+                    street: 'rue-de-moscou',
+                    duration: 1
+                }]
+            }]
+        };
+
+        const cars = simulateTraffic(submission, input);
+
+        expect(cars).to.deep.equal([
+            {
+                pathStreetNames: ['rue-de-rome' ],
+                timeRemainingOnStreet: 2
+            }
+        ]);
+    });
+    it('the car now crosses the intersection and continues to rue-de-moscou', () => {
+        const input = parseInput('A');
+        input.cars = [input.cars[0]];
+        input.duration = 7;
+        const submission = {
+            intersectionSchedules: [{
+                intersection: 0,
+                schedules: [{
+                    street: 'rue-de-londres',
+                    duration: 2
+                }]
+            }, {
+                intersection: 1,
+                schedules: [{
+                    street: 'rue-d-athenes',
+                    duration: 2
+                }, {
+                    street: 'rue-d-amsterdam',
+                    duration: 1
+                }]
+            }, {
+                intersection: 2,
+                schedules: [{
+                    street: 'rue-de-moscou',
+                    duration: 1
+                }]
+            }]
+        };
+
+        const cars = simulateTraffic(submission, input);
+
+        expect(cars).to.deep.equal([
+            {
+                pathStreetNames: ['rue-de-rome' ],
+                timeRemainingOnStreet: 0,
+                arrived: 7
+            }
+        ]);
+    });
+});
 
 
 describe('score', () => {
