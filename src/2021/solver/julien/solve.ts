@@ -17,14 +17,11 @@ export function solve(input: Input) : Submission {
     let intersectionSchedules : Array<IntersectionSchedule> = Object.entries(input.intersectionsById).map(
         ([id, intersection]) => ({
             intersection: parseInt(id, 10),
-            schedules:
-            // _.shuffle(
-                intersection.inputStreets
-                // )
-                    .map(street => ({
-                        street: street,
-                        duration: weightedStreets[street] ?? 0
-                    }))
+            schedules: _.shuffle(intersection.inputStreets)
+                .map(street => ({
+                    street: street,
+                    duration: weightedStreets[street] ?? 0
+                }))
         })
     );
 

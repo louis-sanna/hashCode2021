@@ -14,7 +14,7 @@ export function score2(submission: Submission, input: Input): number {
     });
 
 
-    for (let time = 0; time < input.duration; time++) {
+    for (let time = 0; time <= input.duration; time++) {
         const newIntersectionStates : Record<number, Record<string, Array<Car & {timeLeft:number}>>> = {};
 
         // decrease timeLeft for all cars
